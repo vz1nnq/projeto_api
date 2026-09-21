@@ -1,11 +1,11 @@
 const express = require('express');
+const cors = require('cors');
+const ProdutosRoutes = require('./routes/produtoRoutes');
 
 const app = express();
 
-const cors = require('cors');
-
 app.use(express.json());
-
 app.use(cors());
+app.use('/produtos', ProdutosRoutes)
 
-module.exports = app;
+module.exports = app;   
