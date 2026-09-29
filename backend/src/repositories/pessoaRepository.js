@@ -15,6 +15,14 @@ const getPessoasByID = async (id) => {
     return resultado.rows[0];
 };
 
+const getPessoaByCPF = async (cpf) => {
+    const sql = 'SELECT * FROM pessoas WHERE cpf = $1'
+    const valores = [cpf]
+
+    const resultado = await pool.query(sql, valores);
+    return resultado.rows[0]
+};
+
 const criarPessoa = async (nome, email, telefone, cpf, senha) => {
     const sql = `INSERT INTO pessoas (nome, email, telefone, cpf, senha) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
     const valores = [nome, email, telefone, cpf, senha];
